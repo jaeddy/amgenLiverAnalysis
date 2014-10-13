@@ -1,0 +1,90 @@
+PackratFormat: 1.4
+PackratVersion: 0.3.0.103
+RVersion: 3.1.1
+Repos: CRAN=http://cran.rstudio.com,
+    BioCsoft=http://bioconductor.org/packages/2.14/bioc,
+    BioCann=http://bioconductor.org/packages/2.14/data/annotation,
+    BioCexp=http://bioconductor.org/packages/2.14/data/experiment,
+    BioCextra=http://bioconductor.org/packages/2.14/extra
+
+Package: affy
+Source: Bioconductor
+Version: 1.42.3
+Hash: dbe49632d6ff86a2d81aefe8d1f66f4e
+Requires: affyio, Biobase, BiocGenerics, BiocInstaller, preprocessCore,
+    zlibbioc
+
+Package: affyio
+Source: Bioconductor
+Version: 1.32.0
+Hash: 3fd8ed335b2134ed8eba3ca3bf9e5cda
+Requires: zlibbioc
+
+Package: AnnotationDbi
+Source: Bioconductor
+Version: 1.26.1
+Hash: 53c9eaa06d2cf6c4730c0acfe117b224
+Requires: Biobase, BiocGenerics, DBI, GenomeInfoDb, IRanges, RSQLite
+
+Package: Biobase
+Source: Bioconductor
+Version: 2.24.0
+Hash: 4f0274593caa26e59ae18db561d62908
+Requires: BiocGenerics
+
+Package: BiocGenerics
+Source: Bioconductor
+Version: 0.10.0
+Hash: b6c70fc618424d8147d06f1b97858ceb
+
+Package: BiocInstaller
+Source: Bioconductor
+Version: 1.14.2
+Hash: fb0ba2e5efc6072113945ede070cb4a3
+
+Package: DBI
+Source: CRAN
+Version: 0.3.1
+Hash: 3a9e85b26ec3ab570266bccb3f9de055
+
+Package: GenomeInfoDb
+Source: Bioconductor
+Version: 1.0.2
+Hash: ee5a1f4fe5e3caa08293c78be19b35ca
+
+Package: IRanges
+Source: Bioconductor
+Version: 1.22.10
+Hash: fe4a7edc04d7d9305c9f414fb790aad7
+Requires: BiocGenerics
+
+Package: packrat
+Source: github
+Version: 0.3.0.103
+Hash: 75655ed7d0d37d9aa77a0f22729d524a0cba6375
+GithubRepo: packrat
+GithubUsername: rstudio
+GithubRef: master
+GithubSha1: 75655ed7d0d37d9aa77a0f22729d524a0cba6375
+
+Package: preprocessCore
+Source: Bioconductor
+Version: 1.26.1
+Hash: 9a2ab694b82836cc3b4940bd1c3bd0a2
+
+Package: rat2302cdf
+Source: Bioconductor
+Version: 2.14.0
+Hash: e560b784c40a93ac97df5cc53d811e82
+Requires: AnnotationDbi
+
+Package: RSQLite
+Source: CRAN
+Version: 0.11.4
+Hash: ec89370302e0078555a54c57b61373e2
+Requires: DBI
+
+Package: zlibbioc
+Source: Bioconductor
+Version: 1.10.0
+Hash: 66480582cb80602e4a7e68f478a7307a
