@@ -1,2 +1,8 @@
+# History files
+.Rhistory
+
+# Packrat libraries
 packrat/lib*/
+
+# RStudio files
 .Rproj.user
