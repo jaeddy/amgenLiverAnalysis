@@ -1,46 +1,46 @@
 PackratFormat: 1.4
-PackratVersion: 0.3.0.103
-RVersion: 3.1.1
+PackratVersion: 0.4.1.1
+RVersion: 3.1.2
 Repos: CRAN=http://cran.rstudio.com,
-    BioCsoft=http://bioconductor.org/packages/2.14/bioc,
-    BioCann=http://bioconductor.org/packages/2.14/data/annotation,
-    BioCexp=http://bioconductor.org/packages/2.14/data/experiment,
-    BioCextra=http://bioconductor.org/packages/2.14/extra
+    BioCsoft=http://bioconductor.org/packages/3.0/bioc,
+    BioCann=http://bioconductor.org/packages/3.0/data/annotation,
+    BioCexp=http://bioconductor.org/packages/3.0/data/experiment,
+    BioCextra=http://bioconductor.org/packages/3.0/extra
 
 Package: affy
 Source: Bioconductor
-Version: 1.42.3
-Hash: dbe49632d6ff86a2d81aefe8d1f66f4e
+Version: 1.44.0
+Hash: 9ef5c4e56bb60d5009b7505dd1e144b7
 Requires: affyio, Biobase, BiocGenerics, BiocInstaller, preprocessCore,
     zlibbioc
 
 Package: affyio
 Source: Bioconductor
-Version: 1.32.0
-Hash: 3fd8ed335b2134ed8eba3ca3bf9e5cda
+Version: 1.34.0
+Hash: 5f7b9c3e7597e7422a8c27e0863dae68
 Requires: zlibbioc
 
 Package: AnnotationDbi
 Source: Bioconductor
-Version: 1.26.1
-Hash: 53c9eaa06d2cf6c4730c0acfe117b224
-Requires: Biobase, BiocGenerics, DBI, GenomeInfoDb, IRanges, RSQLite
+Version: 1.28.1
+Hash: 38657d0dfc21cb7ae48f498e11212e42
+Requires: Biobase, BiocGenerics, DBI, GenomeInfoDb, RSQLite, S4Vectors
 
 Package: Biobase
 Source: Bioconductor
-Version: 2.24.0
-Hash: 4f0274593caa26e59ae18db561d62908
+Version: 2.26.0
+Hash: b71870d5a99d67d1aed2539586108549
 Requires: BiocGenerics
 
 Package: BiocGenerics
 Source: Bioconductor
-Version: 0.10.0
-Hash: b6c70fc618424d8147d06f1b97858ceb
+Version: 0.12.0
+Hash: 8a79db1056bb937c97944e09e3dc45a2
 
 Package: BiocInstaller
 Source: Bioconductor
-Version: 1.14.2
-Hash: fb0ba2e5efc6072113945ede070cb4a3
+Version: 1.16.1
+Hash: 8772a5d8d140f2083669934c97975ae6
 
 Package: DBI
 Source: CRAN
@@ -49,42 +49,39 @@ Hash: 3a9e85b26ec3ab570266bccb3f9de055
 
 Package: GenomeInfoDb
 Source: Bioconductor
-Version: 1.0.2
-Hash: ee5a1f4fe5e3caa08293c78be19b35ca
+Version: 1.2.2
+Hash: 7ef4a92217ad7ebb766b3dd73e55e368
+Requires: BiocGenerics, IRanges, S4Vectors
 
 Package: IRanges
 Source: Bioconductor
-Version: 1.22.10
-Hash: fe4a7edc04d7d9305c9f414fb790aad7
-Requires: BiocGenerics
+Version: 2.0.0
+Hash: d5f1befba2f0a236688ff04d319c3254
+Requires: BiocGenerics, S4Vectors
 
 Package: packrat
-Source: github
-Version: 0.3.0.103
-Hash: 75655ed7d0d37d9aa77a0f22729d524a0cba6375
-GithubRepo: packrat
-GithubUsername: rstudio
-GithubRef: master
-GithubSha1: 75655ed7d0d37d9aa77a0f22729d524a0cba6375
+Source: CRAN
+Version: 0.4.1-1
+Hash: 5716097644904b9c1b4be2692de16005
 
 Package: preprocessCore
 Source: Bioconductor
-Version: 1.26.1
-Hash: 9a2ab694b82836cc3b4940bd1c3bd0a2
-
-Package: rat2302cdf
-Source: Bioconductor
-Version: 2.14.0
-Hash: e560b784c40a93ac97df5cc53d811e82
-Requires: AnnotationDbi
+Version: 1.28.0
+Hash: f0755bfd7358b1ba562ec841b2ad91cf
 
 Package: RSQLite
 Source: CRAN
-Version: 0.11.4
-Hash: ec89370302e0078555a54c57b61373e2
+Version: 1.0.0
+Hash: 6ec4dc154e68485971a5baf3817e61a8
 Requires: DBI
+
+Package: S4Vectors
+Source: Bioconductor
+Version: 0.4.0
+Hash: 7563de5be92e3a6a729fccda1a7c2b83
+Requires: BiocGenerics
 
 Package: zlibbioc
 Source: Bioconductor
-Version: 1.10.0
-Hash: 66480582cb80602e4a7e68f478a7307a
+Version: 1.12.0
+Hash: dad121c743c1827bd309cd06e59ab677

@@ -5,9 +5,6 @@ local({
   if (is.na(Sys.getenv("RSTUDIO_PACKRAT_BOOTSTRAP", unset = NA)) &&
         suppressWarnings(requireNamespace("packrat", quietly = TRUE, lib.loc = libDir))) {
 
-    # Check if we need to migrate the library (mainly for Windows)
-    packrat:::checkNeedsMigration()
-
     # Check 'print.banner.on.startup' -- when NA and RStudio, don't print
     print.banner <- packrat::get_opts("print.banner.on.startup")
     if (print.banner == "auto" && is.na(Sys.getenv("RSTUDIO", unset = NA))) {
@@ -18,8 +15,9 @@ local({
     return(packrat::on(print.banner = print.banner))
   }
 
-  ## Bootstrapping -- only performed in interactive contexts
-  if (interactive()) {
+  ## Bootstrapping -- only performed in interactive contexts,
+  ## or when explicitly asked for on the command line
+  if (interactive() || "--bootstrap-packrat" %in% commandArgs(TRUE)) {
 
     ## Escape hatch to allow RStudio to handle initialization
     if (!is.na(Sys.getenv("RSTUDIO", unset = NA)) &&
@@ -141,7 +139,7 @@ local({
     ## an 'installed from source' version
 
     ## -- InstallAgent -- ##
-    installAgent <- 'InstallAgent: packrat 0.3.0.99'
+    installAgent <- 'InstallAgent: packrat 0.4.1.22'
 
     ## -- InstallSource -- ##
     installSource <- 'InstallSource: source'
@@ -168,7 +166,7 @@ local({
 
     # Callers (source-erers) can define this hidden variable to make sure we don't enter packrat mode
     # Primarily useful for testing
-    if (!exists(".__DONT_ENTER_PACKRAT_MODE__.")) {
+    if (!exists(".__DONT_ENTER_PACKRAT_MODE__.") && interactive()) {
       message("> Packrat bootstrap successfully completed. Entering packrat mode...")
       packrat::on()
     }
