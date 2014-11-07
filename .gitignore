@@ -3,6 +3,5 @@
 
 # Packrat libraries
 packrat/lib*/
-
 # RStudio files
 .Rproj.user
