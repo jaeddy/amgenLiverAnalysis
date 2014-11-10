@@ -5,3 +5,6 @@
 packrat/lib*/
 # RStudio files
 .Rproj.user
+
+# Data files
+*data/**
