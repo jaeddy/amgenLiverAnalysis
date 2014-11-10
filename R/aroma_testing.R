@@ -7,3 +7,20 @@ print(cdf)
 
 # Define the CEL set
 cs <- AffymetrixCelSet$byName("amgenLiver", cdf = cdf)
+print(cs)
+
+# Background adjustment and normalization
+bc <- RmaBackgroundCorrection(cs)
+csBC <- process(bc, verbose = verbose)
+
+qn <- QuantileNormalization(csBC, typesToUpdate = "pm")
+csN <- process(qn, verbose = verbose)
+
+# Summarization
+plm <- RmaPlm(csN)
+print(plm)
+
+# Quality assessment of PLM fit
+qam <- QualityAssessmentModel(plm)
+plotNuse(qam)
+plotRle(qam)
