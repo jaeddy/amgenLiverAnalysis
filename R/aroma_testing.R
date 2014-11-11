@@ -1,3 +1,6 @@
+library(aroma.affymetrix)
+verbose <- Arguments$getVerbose(-8, timestamp = TRUE)
+
 setwd("data/")
 
 # Define chip annotation file input
@@ -20,7 +23,13 @@ csN <- process(qn, verbose = verbose)
 plm <- RmaPlm(csN)
 print(plm)
 
-# Quality assessment of PLM fit
-qam <- QualityAssessmentModel(plm)
-plotNuse(qam)
-plotRle(qam)
+# # Quality assessment of PLM fit
+# qam <- QualityAssessmentModel(plm)
+# plotNuse(qam)
+# plotRle(qam)
+# 
+# # Test chip effects
+# ces <- getChipEffectSet(plm)
+# fit <- extractDataFrame(ces, units = 1:3, addNames = TRUE)
+# 
+# readUnits(csN, units = 1:2)
