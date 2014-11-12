@@ -1,27 +1,51 @@
 library(aroma.affymetrix)
-verbose <- Arguments$getVerbose(-8, timestamp = TRUE)
 
 setwd("data/")
 
 # Define chip annotation file input
-chipType <- "Rat230_2" # "RaGene-1_0-st-v1"
-cdf <- AffymetrixCdfFile$byChipType(chipType)
-print(cdf)
+define_chip_type <- function(chipType) {
+    cdf <- AffymetrixCdfFile$byChipType(chipType)
+    cdf
+}
 
 # Define the CEL set
-cs <- AffymetrixCelSet$byName("amgenLiver", cdf = cdf)
-print(cs)
+define_cel_set <- function(projectName, cdf) {
+    cs <- AffymetrixCelSet$byName("amgenLiver", cdf = cdf)
+    cs
+}
+
 
 # Background adjustment and normalization
-bc <- RmaBackgroundCorrection(cs)
-csBC <- process(bc, verbose = verbose)
+background_correct <- function(cs, verbose) {
+    bc <- RmaBackgroundCorrection(cs)
+    csBC <- process(bc, verbose = verbose)
+    csBC
+}
 
-qn <- QuantileNormalization(csBC, typesToUpdate = "pm")
-csN <- process(qn, verbose = verbose)
+quantile_normalize <- function(csBC, verbose) {
+    qn <- QuantileNormalization(csBC, typesToUpdate = "pm")
+    csN <- process(qn, verbose = verbose)
+    csN
+}
 
-# Summarization
-plm <- RmaPlm(csN)
-print(plm)
+chipType <- "Rat230_2" # "RaGene-1_0-st-v1"
+projectName <- "amgenLiver"
+verbose <- Arguments$getVerbose(-8, timestamp = TRUE)
+
+run_aroma <- function(chipType, projectName, verbose) {
+    cdf <- define_chip_type(chipType)
+    cs <- define_cel_set(projectName, cdf)
+    csBC <- background_correct(cs, verbose)
+    csN <- quantile_normalize(csBC, verbose)
+    csN
+}
+
+
+
+
+# # Summarization
+# plm <- RmaPlm(csN)
+# print(plm)
 
 # # Quality assessment of PLM fit
 # qam <- QualityAssessmentModel(plm)
