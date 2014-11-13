@@ -1,7 +1,5 @@
 library(aroma.affymetrix)
 
-setwd("data/")
-
 # Define chip annotation file input
 define_chip_type <- function(chipType) {
     cdf <- AffymetrixCdfFile$byChipType(chipType)
@@ -14,42 +12,34 @@ define_cel_set <- function(projectName, cdf) {
     cs
 }
 
-
-# Background adjustment and normalization
+# Background adjustment with RMA
 background_correct <- function(cs, verbose) {
     bc <- RmaBackgroundCorrection(cs)
     csBC <- process(bc, verbose = verbose)
     csBC
 }
 
+# Quantile normalization
 quantile_normalize <- function(csBC, verbose) {
     qn <- QuantileNormalization(csBC, typesToUpdate = "pm")
     csN <- process(qn, verbose = verbose)
     csN
 }
 
-run_aroma <- function(chipType, projectName, verbose) {
-    cdf <- define_chip_type(chipType)
-    cs <- define_cel_set(projectName, cdf)
-    csBC <- background_correct(cs, verbose)
-    csN <- quantile_normalize(csBC, verbose)
-    csN
-}
+# Define inputs
+chipType <- "Rat230_2"
+projectName <- "amgenLiver"
+verbose <- Arguments$getVerbose(-8, timestamp = TRUE)
 
+# Move to data directory
+mainDir <- getwd()
+setwd("data/")
 
+# Run all preprocessing steps
+cdf <- define_chip_type(chipType)
+cs <- define_cel_set(projectName, cdf)
+csBC <- background_correct(cs, verbose)
+csN <- quantile_normalize(csBC, verbose)
 
-
-# # Summarization
-# plm <- RmaPlm(csN)
-# print(plm)
-
-# # Quality assessment of PLM fit
-# qam <- QualityAssessmentModel(plm)
-# plotNuse(qam)
-# plotRle(qam)
-# 
-# # Test chip effects
-# ces <- getChipEffectSet(plm)
-# fit <- extractDataFrame(ces, units = 1:3, addNames = TRUE)
-# 
-# readUnits(csN, units = 1:2)
+# Reset working directory
+setwd(mainDir)
