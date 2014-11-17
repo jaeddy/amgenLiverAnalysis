@@ -1,0 +1,81 @@
+---
+title: "Exploratory analysis of Amgen liver expression data"
+output: html_document
+---
+
+### Summary
+
+The goal of this analysis is simply to inspect the data, understand the overall
+structure a bit better, and identify any interesting (or problematic) features
+or samples in the data.
+
+### Loading the data
+
+The raw expression files (.CEL) were previously processed using the
+`aroma.affymetrix` package. Specifically, all microarray samples were 
+collectively processed with RMA for background correction, then quantile 
+normalized. We can load the data again using `aroma` functions (this takes a
+few moments, so we can turn on the `cache` option in the `r` chunk). 
+
+**Note:** The `data` directory should be set as the working directory and
+should include this `.Rmd` file for the following code to work.
+
+```{r load_processed_data, cache=TRUE}
+# Load the aroma.affymetrix library
+library(aroma.affymetrix)
+
+# Define inputs
+chipType <- "Rat230_2"
+projectName <- "amgenLiver"
+
+# Define CDF
+cdf <- AffymetrixCdfFile$byChipType(chipType)
+
+# Load the original, raw CEL set
+cs <- AffymetrixCelSet$byName(projectName, cdf = cdf)
+
+# Define CEL set as RMA corrected, quantile normalized data
+csN <- AffymetrixCelSet$byName(projectName, cdf = cdf, tags = "RBC,QN")
+```
+
+Next, we'll convert the `aroma` CEL set object into an `AffyBatch` object so
+that we can use other functions in the `affy` package.
+
+```{r convert_to_affybatch, cache=TRUE}
+library(affy)
+
+# Extract AffyBatch from CEL set object
+liverData <- extractAffyBatch(csN)
+
+# Also extract an AffyBatch object for the raw data
+liverData_raw <- extractAffyBatch(cs)
+
+```
+
+Some basic plotting...
+
+```{r simple_plots}
+hist(liverData_raw)
+boxplot(liverData_raw)
+```
+
+Use `affy` function `rma` to background correct and quantile normalize the raw
+expression data (compare to `aroma` preprocessing steps).
+
+```{r preprocess_data, cache=TRUE}
+eset <- rma(liverData_raw) #11:19
+hist(exprs(eset))
+boxplot(exprs(eset))
+```
+
+Extract the expression data from the AffyBatch object...
+
+```{r extract_eset}
+eset <- exprs(liverData)
+```
+
+More basic plotting with the `eset` object...
+
+```{r simple_plots_eset}
+boxplot(eset)
+```
