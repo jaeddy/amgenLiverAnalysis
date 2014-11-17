@@ -11,4 +11,7 @@ celFiles <- list.celfiles(celDir)
 t <- system.time({
     testData <- ReadAffy(filenames = celFiles, celfile.path = celDir)
 })
-t
+
+t2 <- system.time({
+    testEset <- rma(testData)
+})
